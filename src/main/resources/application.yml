@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    url: jdbc:mysql://47.101.44.170/FutureQuant?useUnicode=true&characterEncoding=utf8&useSSL=false&allowMultiQueries=true
+    username: wzy
+    password: 111111
+    type: com.alibaba.druid.pool.DruidDataSource
+mybatis:
+  mapper-locations: classpath:com/main/dao/mapper/*.xml
+
+
