@@ -8,7 +8,7 @@
 
 
     <insert id="addData_M" parameterType="com.main.domain.futureData">
-        insert into rbm_1min (t_date,open,high,low,price,volume,holdings) values (#{date},#{open},#{high},#{low},#{price},#{volume},#{holdings})
+        insert into rbm_1min_n (t_date,open,high,low,price,volume,holdings) values (#{date},#{open},#{high},#{low},#{price},#{volume},#{holdings})
     </insert>
 
 

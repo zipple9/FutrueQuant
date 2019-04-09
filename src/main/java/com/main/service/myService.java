@@ -19,7 +19,9 @@ public class myService {
     }
 
     public void addData_M(futureData fd){
-        dd.addData_M(fd);
+        try{
+            dd.addData_M(fd);
+        }catch(Exception e){}
     }
 
 

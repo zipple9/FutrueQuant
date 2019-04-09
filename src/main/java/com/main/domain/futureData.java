@@ -9,7 +9,7 @@ public class futureData {
 
     private String variety;
 
-    private Timestamp date;
+    private String date;
     private int price;
     private int open;
     private int high;
@@ -22,7 +22,7 @@ public class futureData {
         this.variety = variety;
     }
 
-    public void setDate(Timestamp date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -55,7 +55,7 @@ public class futureData {
         return variety;
     }
 
-    public Timestamp getDate() {
+    public String getDate() {
         return date;
     }
 
@@ -83,7 +83,7 @@ public class futureData {
         return holdings;
     }
 
-    public futureData(String variety, Timestamp date, int open, int high, int low, int price, int holdings, int volume) {
+    public futureData(String variety, String date, int open, int high, int low, int price, int holdings, int volume) {
         this.variety = variety;
         this.date = date;
         this.price = price;
