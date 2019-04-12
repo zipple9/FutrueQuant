@@ -4,19 +4,20 @@ import java.sql.Timestamp;
 
 /**
  * Created by wzy on 2019/1/19 12:03
+ * 单条交易记录
  **/
 public class futureData {
 
     private String variety;
 
     private String date;
-    private int price;
-    private int open;
-    private int high;
-    private int low;
+    private Integer price;
+    private Integer open;
+    private Integer high;
+    private Integer low;
 
-    private int volume;
-    private int holdings;
+    private Integer volume;
+    private Integer holdings;
 
     public void setVariety(String variety) {
         this.variety = variety;
@@ -26,27 +27,27 @@ public class futureData {
         this.date = date;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(Integer price) {
         this.price = price;
     }
 
-    public void setOpen(int open) {
+    public void setOpen(Integer open) {
         this.open = open;
     }
 
-    public void setHigh(int high) {
+    public void setHigh(Integer high) {
         this.high = high;
     }
 
-    public void setLow(int low) {
+    public void setLow(Integer low) {
         this.low = low;
     }
 
-    public void setVolume(int volume) {
+    public void setVolume(Integer volume) {
         this.volume = volume;
     }
 
-    public void setHoldings(int holdings) {
+    public void setHoldings(Integer holdings) {
         this.holdings = holdings;
     }
 
@@ -59,31 +60,31 @@ public class futureData {
         return date;
     }
 
-    public int getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
-    public int getOpen() {
+    public Integer getOpen() {
         return open;
     }
 
-    public int getHigh() {
+    public Integer getHigh() {
         return high;
     }
 
-    public int getLow() {
+    public Integer getLow() {
         return low;
     }
 
-    public int getVolume() {
+    public Integer getVolume() {
         return volume;
     }
 
-    public int getHoldings() {
+    public Integer getHoldings() {
         return holdings;
     }
 
-    public futureData(String variety, String date, int open, int high, int low, int price, int holdings, int volume) {
+    public futureData(String variety, String date, Integer open, Integer high, Integer low, Integer price, Integer volume, Integer holdings) {
         this.variety = variety;
         this.date = date;
         this.price = price;
@@ -92,5 +93,21 @@ public class futureData {
         this.low = low;
         this.volume = volume;
         this.holdings = holdings;
+    }
+
+    public futureData(String date, Integer price, Integer open, Integer high, Integer low, Integer volume, Integer holdings) {
+        this.date = date;
+        this.price = price;
+        this.open = open;
+        this.high = high;
+        this.low = low;
+        this.volume = volume;
+        this.holdings = holdings;
+    }
+
+
+    @Override
+    public String toString() {
+        return this.getVariety()+" "+this.getDate()+" "+this.getPrice()+" "+this.getOpen()+" "+this.getHigh()+" "+this.getLow()+" "+this.getVolume()+" "+this.getHoldings();
     }
 }

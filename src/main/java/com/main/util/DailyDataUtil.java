@@ -12,6 +12,7 @@ import java.net.URLConnection;
 import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by wzy on 2019/1/17 22:34
@@ -58,10 +59,20 @@ public class DailyDataUtil {
             String[] sa=processData(result);
             System.out.println(Arrays.toString(sa));
 
-            futureData fd=new futureData(sa[0],sa[1],Integer.parseInt(sa[2]),Integer.parseInt(sa[3]),Integer.parseInt(sa[4]),Integer.parseInt(sa[5]),Integer.parseInt(sa[6]),Integer.parseInt(sa[7]));
+            //减去上一条记录的volume  从而计算正确的volume
+            List<futureData> fdList=ms.getDailyData();
 
-            //将处理过的数据 存入db
-            ms.addData_M(fd);
+//            if(fdList.size()>0){
+//                futureData fdLastDay=fdList.get(fdList.size()-1);
+//                System.out.println(fdLastDay.getVolume());
+//                futureData fd=new futureData(sa[0],sa[1],Integer.parseInt(sa[2]),Integer.parseInt(sa[3]),Integer.parseInt(sa[4]),Integer.parseInt(sa[5]),Integer.parseInt(sa[6])-fdLastDay.getHoldings(),Integer.parseInt(sa[7]));
+//                ms.addData_M(fd);
+//
+//            }else{
+                futureData fd=new futureData(sa[0],sa[1],Integer.parseInt(sa[2]),Integer.parseInt(sa[3]),Integer.parseInt(sa[4]),Integer.parseInt(sa[5]),Integer.parseInt(sa[6]),Integer.parseInt(sa[7]));
+                ms.addData_M(fd);
+
+
 
             return Arrays.toString(sa);
 
@@ -77,7 +88,7 @@ public class DailyDataUtil {
         str=str.substring(19);
         String[] sa=str.split(",");
         sa[1]=" "+sa[1].substring(0,2)+":"+sa[1].substring(2,4)+":"+sa[1].substring(4,6);
-        sa=new String[]{sa[0],sa[17]+sa[1].substring(0,6),sa[2].replace(".00",""),sa[3].replace(".00",""),sa[4].replace(".00",""),sa[8].replace(".00",""),sa[14],sa[14]};
+        sa=new String[]{sa[0],sa[17]+sa[1].substring(0,6),sa[2].replace(".00",""),sa[3].replace(".00",""),sa[4].replace(".00",""),sa[8].replace(".00",""),sa[14],sa[13]};
 //        return str.substring(0,8)+str.substring(117)+" "+str.substring(8,10)+":"+str.substring(10,12)+":"+str.substring(12,14)+str.substring(14,38).replace(".00","")+str.substring(62,71).replace(".00","")+str.substring(95,110);
 
         // 直接操作字符串会有问题 ，因为其中有几个数据 可能是3位 也可能是4位
