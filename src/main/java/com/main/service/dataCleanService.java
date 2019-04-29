@@ -1,7 +1,7 @@
 package com.main.service;
 
 import com.main.dao.dataCleanDao;
-import com.main.domain.futureData;
+import com.main.domain.FutureData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +16,7 @@ public class dataCleanService {
     private dataCleanDao dcd;
 
 
-    List<futureData> getRawFutureData(int limit){
+    List<FutureData> getRawFutureData(int limit){
         return dcd.getRawFutureData(limit);
     }
 }

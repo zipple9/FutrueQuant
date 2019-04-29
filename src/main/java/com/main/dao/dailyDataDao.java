@@ -1,6 +1,6 @@
 package com.main.dao;
 
-import com.main.domain.futureData;
+import com.main.domain.FutureData;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -13,6 +13,6 @@ import java.util.List;
 public interface dailyDataDao {
 
     int addRawData(@Param("ctx")String ctx);
-    int addData_M(futureData fd);
-    List<futureData> getData();
+    int addData_M(FutureData fd);
+    List<FutureData> getData();
 }

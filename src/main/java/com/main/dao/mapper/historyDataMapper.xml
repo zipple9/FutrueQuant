@@ -2,13 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.main.dao.historyDataDao" >
 
-    <insert id="addHistroyData" parameterType="com.main.domain.futureData">
+    <insert id="addHistroyData" parameterType="com.main.domain.FutureData">
         insert into rbm_1min_history values
         (#{date},#{open},#{high},#{low},#{price},#{volume},#{holdings})
     </insert>
 
-    <select id="getHistoryData" resultType="com.main.domain.futureData">
-        select * from rbm_1min_history limit 500
+    <select id="getHistoryData" resultType="com.main.domain.FutureData">
+        select * from rbm_1min_history order by t_date desc limit 500
     </select>
 
 

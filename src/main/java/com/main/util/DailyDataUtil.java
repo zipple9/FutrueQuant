@@ -1,16 +1,13 @@
 package com.main.util;
 
-import com.main.domain.futureData;
+import com.main.domain.FutureData;
 import com.main.service.myService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.*;
-import java.lang.reflect.Array;
 import java.net.URL;
 import java.net.URLConnection;
-import java.sql.Time;
-import java.sql.Timestamp;
 import java.util.Arrays;
 import java.util.List;
 
@@ -60,16 +57,16 @@ public class DailyDataUtil {
             System.out.println(Arrays.toString(sa));
 
             //减去上一条记录的volume  从而计算正确的volume
-            List<futureData> fdList=ms.getDailyData();
+            List<FutureData> fdList=ms.getDailyData();
 
 //            if(fdList.size()>0){
-//                futureData fdLastDay=fdList.get(fdList.size()-1);
+//                FutureData fdLastDay=fdList.get(fdList.size()-1);
 //                System.out.println(fdLastDay.getVolume());
-//                futureData fd=new futureData(sa[0],sa[1],Integer.parseInt(sa[2]),Integer.parseInt(sa[3]),Integer.parseInt(sa[4]),Integer.parseInt(sa[5]),Integer.parseInt(sa[6])-fdLastDay.getHoldings(),Integer.parseInt(sa[7]));
+//                FutureData fd=new FutureData(sa[0],sa[1],Integer.parseInt(sa[2]),Integer.parseInt(sa[3]),Integer.parseInt(sa[4]),Integer.parseInt(sa[5]),Integer.parseInt(sa[6])-fdLastDay.getHoldings(),Integer.parseInt(sa[7]));
 //                ms.addData_M(fd);
 //
 //            }else{
-                futureData fd=new futureData(sa[0],sa[1],Integer.parseInt(sa[2]),Integer.parseInt(sa[3]),Integer.parseInt(sa[4]),Integer.parseInt(sa[5]),Integer.parseInt(sa[6]),Integer.parseInt(sa[7]));
+                FutureData fd=new FutureData(sa[0],sa[1],Integer.parseInt(sa[2]),Integer.parseInt(sa[3]),Integer.parseInt(sa[4]),Integer.parseInt(sa[5]),Integer.parseInt(sa[6]),Integer.parseInt(sa[7]));
                 ms.addData_M(fd);
 
 

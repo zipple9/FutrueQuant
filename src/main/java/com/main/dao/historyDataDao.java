@@ -1,8 +1,7 @@
 package com.main.dao;
 
 
-import com.main.domain.futureData;
-import org.apache.ibatis.annotations.Param;
+import com.main.domain.FutureData;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -10,7 +9,7 @@ import java.util.List;
 @Repository
 public interface historyDataDao {
 
-    int addHistroyData(futureData fd);
-    List<futureData> getHistoryData();
+    int addHistroyData(FutureData fd);
+    List<FutureData> getHistoryData();
 
 }

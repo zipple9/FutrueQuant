@@ -1,6 +1,6 @@
 package com.main.controller;
 
-import com.main.domain.futureData;
+import com.main.domain.FutureData;
 import com.main.service.myService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,13 +18,13 @@ private myService myService;
 
     @RequestMapping("/getDailyData")
     @ResponseBody
-    public List<futureData> getDailyData(){
+    public List<FutureData> getDailyData(){
         return myService.getDailyData();
     }
 
     @RequestMapping("/getHistoryData")
     @ResponseBody
-    public List<futureData> getHistoryData(){
+    public List<FutureData> getHistoryData(){
         return myService.getHistoryData();
     }
 

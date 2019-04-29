@@ -1,9 +1,7 @@
 package com.main.service;
 
 
-import com.alibaba.druid.util.StringUtils;
-import com.main.domain.futureData;
-import org.apache.ibatis.reflection.ArrayUtil;
+import com.main.domain.FutureData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +17,7 @@ public class rawFileHandler {
     myService myService;
 
 
-    public List<futureData> readFile(){
+    public List<FutureData> readFile(){
         List<String> dataList=new ArrayList<>();
         try{
             // Java8用流的方式读文件，更加高效
@@ -30,7 +28,7 @@ public class rawFileHandler {
             });
 
         }catch (Exception e){e.printStackTrace();}
-        List<futureData> resultList=new ArrayList<>();
+        List<FutureData> resultList=new ArrayList<>();
 
         for(int i=2;i<dataList.size()-1;i++){
             String temp="";
@@ -41,7 +39,7 @@ public class rawFileHandler {
 
 //            System.out.println(ArrayUtil.toString(dataArray));
 
-            futureData futureData=new futureData(dataArray[0],Integer.parseInt(dataArray[1]),Integer.parseInt(dataArray[2]),Integer.parseInt(dataArray[3]),Integer.parseInt(dataArray[4]),Integer.parseInt(dataArray[5]),Integer.parseInt(dataArray[6]));
+            FutureData futureData=new FutureData(dataArray[0],Integer.parseInt(dataArray[1]),Integer.parseInt(dataArray[2]),Integer.parseInt(dataArray[3]),Integer.parseInt(dataArray[4]),Integer.parseInt(dataArray[5]),Integer.parseInt(dataArray[6]));
 
             resultList.add(futureData);
         }

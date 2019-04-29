@@ -1,11 +1,6 @@
 import com.main.baseTest;
-import com.main.domain.futureData;
-import com.main.service.myService;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class serviceTest extends baseTest {
 
@@ -18,8 +13,8 @@ public class serviceTest extends baseTest {
     @Test
     public void mainTest(){
         rawFileHandler.wiriteDB();
-//        List<futureData> fdList=new ArrayList<>();
-//        fdList.add(new futureData("20190102",2000,2000,3000,3000,0,0));
+//        List<FutureData> fdList=new ArrayList<>();
+//        fdList.add(new FutureData("20190102",2000,2000,3000,3000,0,0));
 //        myService.addHistroyData(fdList);
     }
 

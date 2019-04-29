@@ -2,7 +2,7 @@ package com.main.service;
 
 import com.main.dao.dailyDataDao;
 import com.main.dao.historyDataDao;
-import com.main.domain.futureData;
+import com.main.domain.FutureData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,21 +23,21 @@ public class myService {
         dd.addRawData(ctx);
     }
 
-    public void addData_M(futureData fd){
+    public void addData_M(FutureData fd){
         try{
             dd.addData_M(fd);
         }catch(Exception e){}
     }
 
-    public List<futureData> getDailyData(){
+    public List<FutureData> getDailyData(){
         return dd.getData();
     }
 
-    public int addHistroyData(futureData fd){
+    public int addHistroyData(FutureData fd){
         return hd.addHistroyData(fd);
     }
 
-    public List<futureData> getHistoryData(){
+    public List<FutureData> getHistoryData(){
         return hd.getHistoryData();
     }
 
