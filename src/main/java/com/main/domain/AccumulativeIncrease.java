@@ -8,10 +8,9 @@ import lombok.Data;
  * @Date: 2019/04/26
  */
 @Data
-public class AccumulativeIncrease {
+public class AccumulativeIncrease extends Period {
 
 
-    private Integer duringDays;
     private Double increaseValue;
     private Double increasePercentage;
 

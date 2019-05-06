@@ -1,4 +1,5 @@
 import com.main.baseTest;
+import com.main.service.AnalysisService;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -9,13 +10,13 @@ public class serviceTest extends baseTest {
     private com.main.service.rawFileHandler rawFileHandler;
     @Autowired
     private com.main.service.myService myService;
+    @Autowired
+    private AnalysisService analysisService;
 
     @Test
     public void mainTest(){
-        rawFileHandler.wiriteDB();
-//        List<FutureData> fdList=new ArrayList<>();
-//        fdList.add(new FutureData("20190102",2000,2000,3000,3000,0,0));
-//        myService.addHistroyData(fdList);
+//        analysisService.analyze();
+
     }
 
 }
