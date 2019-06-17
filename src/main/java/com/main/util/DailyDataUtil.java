@@ -61,7 +61,10 @@ public class DailyDataUtil {
             futureData fd=new futureData(sa[0],sa[1],Integer.parseInt(sa[2]),Integer.parseInt(sa[3]),Integer.parseInt(sa[4]),Integer.parseInt(sa[5]),Integer.parseInt(sa[6]),Integer.parseInt(sa[7]));
 
             //将处理过的数据 存入db
-            ms.addData_M(fd);
+            try{
+                ms.addData_M(fd);
+
+            }catch (Exception e){e.printStackTrace();}
 
             return Arrays.toString(sa);
 
