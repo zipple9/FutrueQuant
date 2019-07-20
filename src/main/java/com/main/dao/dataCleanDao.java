@@ -1,6 +1,6 @@
 package com.main.dao;
 
-import com.main.domain.futureData;
+import com.main.domain.FutureData;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -13,7 +13,7 @@ import java.util.List;
 public interface dataCleanDao {
 
 
-    List<futureData> getRawFutureData(@Param("limit")int limit);
+    List<FutureData> getRawFutureData(@Param("limit")int limit);
 
 
 }

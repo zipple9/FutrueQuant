@@ -16,10 +16,10 @@ public class scheduledService {
 
 
 
-    @Scheduled(cron = "0/25 * 9,10,11,13,14,15,21,22,23 ? * MON-FRI")
-    public void getCurrentData(){
-        du.getData();
-    }
+//    @Scheduled(cron = "0/25 * 9,10,11,13,14,15,21,22,23 ? * MON-FRI")
+//    public void getCurrentData(){
+//        du.getData();
+//    }
 
 //    @Scheduled(cron ="0/5 * * * * *" )
 //    public void test(){
