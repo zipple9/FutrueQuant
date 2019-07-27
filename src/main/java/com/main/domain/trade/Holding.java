@@ -14,7 +14,7 @@ import java.math.BigDecimal;
 public class Holding {
 
     //TODO  怎么处理这个字段
-    private String variety=this.futureData.getVariety();
+    private String variety;
 //品种
     private String varietyName;
 
@@ -23,10 +23,23 @@ public class Holding {
 //    private boolean direct;
     //数量
     private Integer count;
-    //成本
+    //每股成本
     private BigDecimal cost;
 
     private BigDecimal currentValue;
+
+
+
+    public Holding(FutureData futureData,Integer count){
+        this.setCount(count);
+        this.setFutureData(futureData);
+        this.setCost(futureData.getPrice());
+        this.setVariety(futureData.getVariety());
+    }
+
+    public Holding(){
+
+    }
 
 
 }

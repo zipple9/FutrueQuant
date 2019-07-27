@@ -41,7 +41,7 @@ private AnalysisService analysisService;
 
 
         JSONObject result=new JSONObject();
-        List<FutureData> dataList=getDataService.getData(500,"","");
+        List<FutureData> dataList=getDataService.getData(limit,startDate,endDate);
 
 
         result.put("dataList",dataList);

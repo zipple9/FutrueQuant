@@ -12,7 +12,7 @@
     </select>
 
     <select id="getData" resultType="com.main.domain.FutureData">
-        select * from rbm_1min_history
+        select 'rmb' variety,r.* from rbm_1min_history r
         <if test="startDate !='' or endDate !=''">
             where t_date between #{startDate} and #{endDate}
         </if>
