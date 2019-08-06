@@ -26,6 +26,18 @@ public class BigDecimalComputeUtil {
 
 
 
+    public static boolean substractValue(BigDecimal oneItem,BigDecimal twoItem,Double value){
+        int result= oneItem.subtract(twoItem).compareTo(new BigDecimal(value));
+
+        if(result>=0){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+
+
 
 
 

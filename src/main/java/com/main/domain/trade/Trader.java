@@ -43,10 +43,11 @@ private String traderNo;
                     this.longHoldings.put(varietyCode,longHolding);
                     //计算剩余资金
                     this.money=this.money.subtract(holding.getCost().multiply(new BigDecimal(holding.getCount()) ));
-                    log.info("买多 ："+holding.getFutureData().toString()+holding.getCount());
+                    log.info(this.longHoldings.toString());
+                    log.info("买多 date: "+holding.getFutureData().getDate()+" price: "+holding.getFutureData().getPrice()+" count: "+holding.getCount());
                     return true;
                 }else{
-                    log.info("买多 ："+holding.getFutureData().toString()+"资金不足");
+                    log.info("买多 date: "+holding.getFutureData().getDate()+"  交易失败-----资金不足");
                     return false;
                 }
             //sell long
@@ -60,7 +61,7 @@ private String traderNo;
                 this.longHoldings.put(varietyCode,longHolding);
 
                 this.money=this.money.add(holding.getFutureData().getPrice().multiply(new BigDecimal(holding.getCount())));
-                log.info("卖多 ："+holding.getFutureData().toString()+holding.getCount());
+                log.info("卖多 date: "+holding.getFutureData().getDate()+" price: "+holding.getFutureData().getPrice()+" count: "+holding.getCount());
                 return true;
         }
 

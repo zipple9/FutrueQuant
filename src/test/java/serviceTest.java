@@ -3,7 +3,9 @@ import com.main.dao.HistoryDataDao;
 import com.main.domain.AccumulativeDecrease;
 import com.main.domain.AccumulativeIncrease;
 import com.main.domain.FutureData;
+import com.main.domain.trade.CurrentStg;
 import com.main.domain.trade.Holding;
+import com.main.domain.trade.Strategy;
 import com.main.domain.trade.Trader;
 import com.main.service.AnalysisService;
 import com.main.service.GetDataService;
@@ -33,6 +35,11 @@ public class serviceTest extends baseTest {
     private HistoryDataDao historyDataDao;
     @Autowired
     private GetDataService getDataService;
+    @Autowired
+    private Strategy strategy;
+
+
+
     @Test
     public void mainTest(){
 //        System.out.println(myService.getDailyData());
@@ -51,59 +58,72 @@ public class serviceTest extends baseTest {
 
     @Test
     public void test2(){
-        historyDataDao.getData(20,"2018-06-15 0902","2018-06-15 0920").forEach(x->{
-            System.out.println(x);
-        });
-        historyDataDao.getData(5,"","").forEach(x->{
-            System.out.println(x);
-        });
+//        historyDataDao.getData(20,"2018-06-15 0902","2018-06-15 0920").forEach(x->{
+//            System.out.println(x);
+//        });
+//        historyDataDao.getData(5,"","").forEach(x->{
+//            System.out.println(x);
+//        });
+        List<FutureData> fdList=getDataService.getData(null,"2018-06-15 0900","2018-06-15 2400");
+        fdList.forEach(i-> System.out.println(i));
 
     }
     @Test
     public void test3(){
-        System.out.println(BigDecimalComputeUtil.getROC(new BigDecimal("15"),new BigDecimal("10")));
+
+        List<FutureData> fdList1=getDataService.getData(null,"2018-06-15 0900","2018-06-15 2400");
+        List<FutureData> fdList2=getDataService.getData(null,"2018-06-19 0900","2018-06-19 2400");
+        List<FutureData> fdList3=getDataService.getData(null,"2018-06-20 0900","2018-06-20 2400");
+
+
+        new Thread(){
+            @Override
+            public void run() {
+                try {
+                    System.out.println(strategy.stg1(fdList1));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }.start();
+        new Thread(){
+            @Override
+            public void run() {
+                try {
+                    System.out.println(strategy.stg1(fdList2));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }.start();
+        new Thread(){
+            @Override
+            public void run() {
+                try {
+                    System.out.println(strategy.stg1(fdList3));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }.start();
+
+//        CurrentStg cs1=new CurrentStg();
+//        cs1.setFdList(fdList1);
+//        cs1.run();
+//        CurrentStg cs2=new CurrentStg();
+//        cs2.setFdList(fdList2);
+//        cs2.run();
+//        CurrentStg cs3=new CurrentStg();
+//        cs3.setFdList(fdList3);
+//        cs3.run();
+
+
     }
 
     @Test
     public void excute() throws Exception{
-
-        boolean buyFlag=true;
-
-        Trader trader=new Trader();
-        trader.setMoney(new BigDecimal("50000"));
-
-        List<FutureData> fdList=getDataService.getData(2000,"","");
-
-        for(int i=2;i<fdList.size();i++){
-
-            //连续三个 量价齐增
-            if( buyFlag &&
-                    fdList.get(i).getPrice().compareTo(fdList.get(i-1).getPrice())==1 && fdList.get(i-1).getPrice().compareTo(fdList.get(i-2).getPrice())==1 && fdList.get(i).getVolume()>fdList.get(i-1).getVolume() && fdList.get(i-1).getVolume()>fdList.get(i-2).getVolume()){
-                //bug long
-                Holding holding=new Holding(fdList.get(i),2);
-                buyFlag=trader.trade(1,holding);
-//                log.info(trader.toString());
-//                log.info(trader.getMoney().toString());
-            }
-
-            //2%涨幅  卖出
-            Optional op=Optional.ofNullable(trader.getLongHoldings().get("rmb"));
-            if( op.isPresent()){
-//                log.info("涨幅判断"+BigDecimalComputeUtil.getROC(fdList.get(i).getPrice(),trader.getLongHoldings().get("rmb").getCost()));
-            }
-            if(  op.isPresent() && BigDecimalComputeUtil.getROC(fdList.get(i).getPrice(),trader.getLongHoldings().get("rmb").getCost()) >0.005  ){
-
-                trader.getLongHoldings().get("rmb").setFutureData(fdList.get(i));
-
-                //全部卖出
-                trader.trade(2,trader.getLongHoldings().get("rmb"));
-            }
-
-        }
-
-
-        //结果展示
-        System.out.println(trader);
+//        strategy.runStrategy();
+        strategy.runStrategyCct();
     }
 
 }
