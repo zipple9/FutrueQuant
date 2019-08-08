@@ -10,10 +10,12 @@ import com.main.domain.trade.Trader;
 import com.main.service.AnalysisService;
 import com.main.service.GetDataService;
 import com.main.service.myService;
+import com.main.service.testService;
 import com.main.util.BigDecimalComputeUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import sun.reflect.misc.FieldUtil;
 
 import java.math.BigDecimal;
@@ -37,6 +39,8 @@ public class serviceTest extends baseTest {
     private GetDataService getDataService;
     @Autowired
     private Strategy strategy;
+    @Autowired
+    private com.main.service.testService testService;
 
 
 
@@ -57,16 +61,11 @@ public class serviceTest extends baseTest {
     }
 
     @Test
+    @Transactional
     public void test2(){
-//        historyDataDao.getData(20,"2018-06-15 0902","2018-06-15 0920").forEach(x->{
-//            System.out.println(x);
-//        });
-//        historyDataDao.getData(5,"","").forEach(x->{
-//            System.out.println(x);
-//        });
-        List<FutureData> fdList=getDataService.getData(null,"2018-06-15 0900","2018-06-15 2400");
-        fdList.forEach(i-> System.out.println(i));
-
+        testService.deleteData();
+//        testService.addData();
+        testService.selectData();
     }
     @Test
     public void test3(){

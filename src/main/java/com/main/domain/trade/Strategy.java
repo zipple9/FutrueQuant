@@ -13,10 +13,7 @@ import java.math.BigDecimal;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.Vector;
+import java.util.*;
 
 /**
  * @Author wzy
@@ -127,7 +124,8 @@ public class Strategy {
 
 
     public static void main(String args[]) {
-        new Strategy().runStrategyCct();
+//        new Strategy().runStrategyCct();
+        System.out.println(new Date());
     }
 
 
