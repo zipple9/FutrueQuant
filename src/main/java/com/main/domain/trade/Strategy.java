@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
-import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
@@ -25,6 +24,7 @@ public class Strategy {
     @Autowired
     private GetDataService getDataService;
 
+    static List<String> result=new Vector<>();
 
     public JSONObject runStrategy() {
 
@@ -57,49 +57,52 @@ public class Strategy {
             List<Trader> traderList = new Vector<>();
 
 
-            LocalDateTime timeStart=LocalDateTime.now();
+            LocalDateTime timeStart = LocalDateTime.now();
+
 
             Runnable producer = new Runnable() {
 
                 List<LocalDate> localDateList = MyDateUtil.getEveryDay("20180615", "20190301");
-                Integer count = 0;
-                Object lock = new Object();
+//                Object lock = new Object();
 
                 @Override
-                public void run() {
+                public synchronized void run() {
+                    Integer count = 0;
 
-                    while (true) {
-                        synchronized (lock) {
-                            if (count < localDateList.size()) {
+
+                    while (count < 100 ) {
 //                                List<FutureData> fdList = getDataService.getData(null, localDateList.get(count) + " 0900", localDateList.get(count) + " 2400");
 //                                try {
 //                                    Thread.sleep(20);
 //                                } catch (InterruptedException e) {
 //                                    e.printStackTrace();
 //                                }
-                                try {
+                            try {
 //                                    traderList.add(stg1(fdList));
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                                }
-                                count++;
-                                System.out.println(Thread.currentThread().getName() + "    ----" + count);
-//                                log.info(count.toString());
+                            } catch (Exception e) {
+                                e.printStackTrace();
                             }
-                        }
+                        Strategy.result.add(count+"-----");
+                            count++;
+//                                log.info(count.toString());
+
                     }
+                    System.out.println(Thread.currentThread().getName() + "    ----" + count +"   result: "+result);
+
                 }
             };
 
             Runnable consumer = new Runnable() {
                 @Override
-                public void run() {
+                public  synchronized void run() {
+                    while( Strategy.result.size()!=0){
 
+                    }
                 }
             };
 
             Thread t1 = new Thread(producer);
-            Thread t2 = new Thread(producer);
+            Thread t2 = new Thread(consumer);
             t1.setName("t1");
             t2.setName("t2");
             t1.start();
@@ -108,12 +111,6 @@ public class Strategy {
 //            traderList.forEach(i-> System.out.println(i.getMoney()));
 
 
-            while(!t1.isAlive() && !t2.isAlive()){
-                System.out.println(traderList);
-
-                LocalDateTime timeEnd = LocalDateTime.now();
-                log.info(Duration.between(timeStart,timeEnd).toMillis()+"--------------------");
-            }
 
             System.out.println("------------end");
         } catch (Exception e) {
@@ -123,9 +120,48 @@ public class Strategy {
     }
 
 
+
+
+
     public static void main(String args[]) {
 //        new Strategy().runStrategyCct();
-        System.out.println(new Date());
+        Thread t1=new Thread(new Runnable() {
+            int count=0;
+            @Override
+            public synchronized void run() {
+                while (result.size()<100){
+                    result.add(Math.random()+" ---");
+                    count++;
+                    System.out.println(Thread.currentThread().getName()+"--produce--"+count+"    "+result.size());
+                }
+            }
+        });
+
+
+        Thread t2=new Thread(new Runnable() {
+            int count=0;
+            @Override
+            public synchronized void run() {
+                System.out.println(Thread.currentThread().getName()+"   t2  run");
+                while(true){
+                    if(result.size()!=0){
+
+                        result.remove(0);
+                        count++;
+                        System.out.println(Thread.currentThread().getName()+"--costume--"+count+"    "+result.size());
+                    }else{
+
+                    }
+                }
+//                while(result.size()!=0){
+//
+//                }
+            }
+        });
+        t1.start();
+        t2.start();
+
+
     }
 
 
