@@ -24,7 +24,7 @@ public class Strategy {
     @Autowired
     private GetDataService getDataService;
 
-    static List<String> result=new Vector<>();
+    static List<Object> result=new Vector<>();
 
     public JSONObject runStrategy() {
 
@@ -64,30 +64,32 @@ public class Strategy {
 
                 List<LocalDate> localDateList = MyDateUtil.getEveryDay("20180615", "20190301");
 //                Object lock = new Object();
-
+                Integer count = 0;
                 @Override
-                public synchronized void run() {
-                    Integer count = 0;
+                public void run() {
+                    log.info("Thread  into ");
 
-
-                    while (count < 100 ) {
-//                                List<FutureData> fdList = getDataService.getData(null, localDateList.get(count) + " 0900", localDateList.get(count) + " 2400");
+                    synchronized (count){
+                        while (true ) {
+                            if(count < localDateList.size()){
+                                List<FutureData> fdList = getDataService.getData(null, localDateList.get(count) + " 0900", localDateList.get(count) + " 2400");
 //                                try {
 //                                    Thread.sleep(20);
 //                                } catch (InterruptedException e) {
 //                                    e.printStackTrace();
 //                                }
-                            try {
+//                            try {
 //                                    traderList.add(stg1(fdList));
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
-                        Strategy.result.add(count+"-----");
-                            count++;
+//                            } catch (Exception e) {
+//                                e.printStackTrace();
+//                            }
+                                Strategy.result.add(fdList);
+                                count++;
 //                                log.info(count.toString());
-
+                                log.info(Thread.currentThread().getName() + "    ----" + count +"   result: "+result.size());
+                            }
+                        }
                     }
-                    System.out.println(Thread.currentThread().getName() + "    ----" + count +"   result: "+result);
 
                 }
             };
@@ -102,7 +104,9 @@ public class Strategy {
             };
 
             Thread t1 = new Thread(producer);
-            Thread t2 = new Thread(consumer);
+            Thread t2 = new Thread(producer);
+
+            //            Thread t2 = new Thread(consumer);
             t1.setName("t1");
             t2.setName("t2");
             t1.start();
