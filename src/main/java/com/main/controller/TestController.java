@@ -22,7 +22,7 @@ public class TestController {
     @RequestMapping("/test")
     public String test(){
         log.info("/test");
-        strategy.runStrategyCct();
+        strategy.runStartegyTP();
         return "test";
     }
 }

@@ -70,51 +70,6 @@ public class serviceTest extends baseTest {
     @Test
     public void test3(){
 
-        List<FutureData> fdList1=getDataService.getData(null,"2018-06-15 0900","2018-06-15 2400");
-        List<FutureData> fdList2=getDataService.getData(null,"2018-06-19 0900","2018-06-19 2400");
-        List<FutureData> fdList3=getDataService.getData(null,"2018-06-20 0900","2018-06-20 2400");
-
-
-        new Thread(){
-            @Override
-            public void run() {
-                try {
-                    System.out.println(strategy.stg1(fdList1));
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }.start();
-        new Thread(){
-            @Override
-            public void run() {
-                try {
-                    System.out.println(strategy.stg1(fdList2));
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }.start();
-        new Thread(){
-            @Override
-            public void run() {
-                try {
-                    System.out.println(strategy.stg1(fdList3));
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }.start();
-
-//        CurrentStg cs1=new CurrentStg();
-//        cs1.setFdList(fdList1);
-//        cs1.run();
-//        CurrentStg cs2=new CurrentStg();
-//        cs2.setFdList(fdList2);
-//        cs2.run();
-//        CurrentStg cs3=new CurrentStg();
-//        cs3.setFdList(fdList3);
-//        cs3.run();
 
 
     }
@@ -122,7 +77,11 @@ public class serviceTest extends baseTest {
     @Test
     public void excute() throws Exception{
 //        strategy.runStrategy();
-        strategy.runStrategyCct();
+//        strategy.runStartegyNoTPAll();
+
+//        strategy.runStartegyNoTP();
+//
+        strategy.runStartegyTP();
     }
 
 }

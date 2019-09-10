@@ -21,6 +21,6 @@ public class GetDataService {
 
 
     public List<FutureData> getData(Integer limit,String startDate,String endDate){
-        return historyDataDao.getData(limit==null?20000:null,startDate,endDate);
+        return historyDataDao.getData(limit,startDate,endDate);
     }
 }

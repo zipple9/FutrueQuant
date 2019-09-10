@@ -27,8 +27,13 @@ private String traderNo;
     private Map<String,Holding> shortHoldings=new HashMap<>();
 
 
-
-
+    /**
+     * 交易 方法
+     * @param tradeType
+     * @param holding
+     * @return
+     * @throws Exception
+     */
     public Boolean trade(int tradeType,Holding holding) throws Exception{
 
         String varietyCode=holding.getVariety();
@@ -43,25 +48,25 @@ private String traderNo;
                     this.longHoldings.put(varietyCode,longHolding);
                     //计算剩余资金
                     this.money=this.money.subtract(holding.getCost().multiply(new BigDecimal(holding.getCount()) ));
-                    log.info(this.longHoldings.toString());
-                    log.info("买多 date: "+holding.getFutureData().getDate()+" price: "+holding.getFutureData().getPrice()+" count: "+holding.getCount());
+                    log.debug(this.longHoldings.toString());
+                    log.debug("买多 date: "+holding.getFutureData().getDate()+" price: "+holding.getFutureData().getPrice()+" count: "+holding.getCount());
                     return true;
                 }else{
-                    log.info("买多 date: "+holding.getFutureData().getDate()+"  交易失败-----资金不足");
+                    log.debug("买多 date: "+holding.getFutureData().getDate()+"  交易失败-----资金不足");
                     return false;
                 }
             //sell long
             case 2:
                 //如果空仓 或者 卖出量大于 买入量     退出sl交易
                 if(longHolding==null || holding.getCount()>longHolding.getCount()){
-                    log.info("卖多 交易失败");
+                    log.debug("卖多 交易失败");
                     return false;
                 }
                 longHolding=(mergeHolding(longHolding,holding,2));
                 this.longHoldings.put(varietyCode,longHolding);
 
                 this.money=this.money.add(holding.getFutureData().getPrice().multiply(new BigDecimal(holding.getCount())));
-                log.info("卖多 date: "+holding.getFutureData().getDate()+" price: "+holding.getFutureData().getPrice()+" count: "+holding.getCount());
+                log.debug("卖多 date: "+holding.getFutureData().getDate()+" price: "+holding.getFutureData().getPrice()+" count: "+holding.getCount());
                 return true;
         }
 

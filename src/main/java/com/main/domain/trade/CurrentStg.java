@@ -31,7 +31,7 @@ public class CurrentStg extends Thread {
     @Override
     public void run() {
         try {
-            System.out.println(strategy.stg1(fdList));
+//            System.out.println(strategy.stg1(fdList));
         } catch (Exception e) {
             e.printStackTrace();
         }
