@@ -64,3 +64,14 @@
     
     cpu耗时已经非常明显了   使用线程池提高性能
     
+9.16
+    使用线程池 提高性能
+    TP strategy    over   completed in 33154 ms
+    900
+     strategy    over   completed in 42922 ms
+    900
+    性能提升还是很明显的
+    
+    尝试增大线程池大小
+    改变线程池的大小对性能目前来看 没有显著的影响
+    
