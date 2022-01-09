@@ -1,30 +1,20 @@
-import com.main.baseTest;
+import com.main.BaseTest;
 import com.main.dao.HistoryDataDao;
 import com.main.domain.AccumulativeDecrease;
 import com.main.domain.AccumulativeIncrease;
-import com.main.domain.FutureData;
-import com.main.domain.trade.CurrentStg;
-import com.main.domain.trade.Holding;
 import com.main.domain.trade.Strategy;
-import com.main.domain.trade.Trader;
 import com.main.service.AnalysisService;
 import com.main.service.GetDataService;
-import com.main.service.myService;
-import com.main.service.testService;
-import com.main.util.BigDecimalComputeUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
-import sun.reflect.misc.FieldUtil;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 @Slf4j
-public class serviceTest extends baseTest {
+public class serviceTest extends BaseTest {
 
 
     @Autowired
@@ -41,7 +31,6 @@ public class serviceTest extends baseTest {
     private Strategy strategy;
     @Autowired
     private com.main.service.testService testService;
-
 
 
     @Test
@@ -66,12 +55,6 @@ public class serviceTest extends baseTest {
         testService.deleteData();
 //        testService.addData();
         testService.selectData();
-    }
-    @Test
-    public void test3(){
-
-
-
     }
 
     @Test

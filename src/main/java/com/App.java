@@ -1,4 +1,4 @@
-package com.main;
+package com;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
@@ -10,13 +10,12 @@ import org.springframework.scheduling.annotation.EnableScheduling;
  **/
 
 
-
 @SpringBootApplication
 @EnableScheduling
 @MapperScan("com.main.dao")
 
-public class app {
-    public static void main (String args[]){
-        SpringApplication.run(app.class,args);
+public class App {
+    public static void main(String args[]) {
+        SpringApplication.run(App.class, args);
     }
 }
